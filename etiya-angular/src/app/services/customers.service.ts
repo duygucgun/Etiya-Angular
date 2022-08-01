@@ -24,7 +24,7 @@ export class CustomersService {
   update(customer:Customer):Observable<Customer>{
     return this.httpClient.put<Customer>(`${this.apiControllerUrl}/${customer.id}`,customer)
   }
-  getCustomerById(val:number):Observable<Customer>{
-    return this.httpClient.get<Customer>(`${this.apiControllerUrl}/${val}`)
+  getCustomerById(id:number):Observable<Customer>{
+    return this.httpClient.get<Customer>(`${this.apiControllerUrl}/${id}`)
   }
 }

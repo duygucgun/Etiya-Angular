@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { Customer } from 'src/app/models/customer';
 import { CustomersService } from 'src/app/services/customers.service';
 
@@ -9,7 +10,7 @@ import { CustomersService } from 'src/app/services/customers.service';
 })
 export class DashboardComponent implements OnInit {
   customerList!: Customer[];
-  constructor(private customersService: CustomersService) { }
+  constructor(private router:Router , private customersService: CustomersService) { }
 
   ngOnInit(): void {
     this.getCustomers()
@@ -19,16 +20,16 @@ export class DashboardComponent implements OnInit {
       this.customerList = response;
     })
   }
-  deleteCustomer(val: number) {
+  deleteCustomer(id: number) {
     if (confirm("Are you sure want to delete?")) {
-      this.customersService.delete(val).subscribe()
-    }
-    setTimeout(() => {
-      location.reload()
+      this.customersService.delete(id).subscribe(()=>{
+        setTimeout(() => {
+          this.getCustomers();
     }, 1000);
+      })
+    }
   }
   selectedCustomerId(selectedCustomer:Customer):void {
-
-    window.location.href=`dashboard/customer/${selectedCustomer.id}`
+    this.router.navigateByUrl(`dashboard/customer/${selectedCustomer.id}`);
   }
 }
