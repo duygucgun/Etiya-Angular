@@ -14,12 +14,10 @@ export class CategoriesService {
   constructor(private httpClient:HttpClient) { }
 
 
-  getList(): Observable<Category[]> {
+  getCategories():Observable<Category[]>{
     return this.httpClient.get<Category[]>(this.apiControllerUrl);
   }
-
-  getById(id:number): Observable<Category> {
-    return this.httpClient.get<Category>(`${this.apiControllerUrl}/${id}}`)
+  getCategoryById(id:number):Observable<Category[]>{
+    return this.httpClient.get<Category[]>(`${this.apiControllerUrl}/${id}`);
   }
 }
-

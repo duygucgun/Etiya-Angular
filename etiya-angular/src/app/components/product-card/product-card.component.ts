@@ -9,11 +9,13 @@ import Product from 'src/app/models/product';
 export class ProductCardComponent implements OnInit {
   @Input() product!: Product;
   @Output() onBtnClick = new EventEmitter();
+  onMouseColor: string = 'blue';
+  isCard: boolean = true;
+  onSaleText: string = 'İndirim!!!';
+
   constructor() {}
 
-  ngOnInit(): void {
-    console.log(this.product);
-  }
+  ngOnInit(): void {}
 
   addToCartEvent() {
     this.onBtnClick.emit(this.product);
