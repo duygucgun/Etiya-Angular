@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
 import Product from 'src/app/models/product';
 import { ProductsService } from 'src/app/services/products/products.service';
 
@@ -11,7 +12,7 @@ import { ProductsService } from 'src/app/services/products/products.service';
 export class ProductDashboardComponent implements OnInit {
 
   productList!: Product[]
-  constructor(private productService: ProductsService, private router:Router) { }
+  constructor(private toastrService:ToastrService, private productService: ProductsService, private router:Router) { }
 
   ngOnInit(): void {
     this.getProducts();
@@ -26,6 +27,7 @@ export class ProductDashboardComponent implements OnInit {
   deleteProduct(id: number) {
     if (confirm("Are you sure want to delete?")) {
       this.productService.deleteProduct(id).subscribe(()=>{
+        this.toastrService.success("Product is delete!", "Update")
         setTimeout(() => {
           this.getProducts();
         }, 1000);

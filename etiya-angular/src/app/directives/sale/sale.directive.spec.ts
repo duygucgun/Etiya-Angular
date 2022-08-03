@@ -1,4 +1,5 @@
-import { SaleDirective } from './sale.directive';
+import { SaleDirective } from "./sale.directive";
+
 
 describe('SaleDirective', () => {
   it('should create an instance', () => {

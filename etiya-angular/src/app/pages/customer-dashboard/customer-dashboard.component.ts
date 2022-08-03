@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
 import { Customer } from 'src/app/models/customer';
 import { CustomersService } from 'src/app/services/customers.service';
 
@@ -12,7 +13,7 @@ import { CustomersService } from 'src/app/services/customers.service';
 export class CustomerDashboardComponent implements OnInit {
 
   customerList!: Customer[]
-  constructor(private customersService: CustomersService, private router:Router) { }
+  constructor(private customersService: CustomersService, private toastrService:ToastrService, private router:Router) { }
 
   ngOnInit(): void {
     this.getCustomers();
@@ -27,6 +28,7 @@ export class CustomerDashboardComponent implements OnInit {
   deleteCustomer(id: number) {
     if (confirm("Are you sure want to delete?")) {
       this.customersService.delete(id).subscribe(()=>{
+        this.toastrService.success("Customer is delete!", "Update")
         setTimeout(() => {
           this.getCustomers();
         }, 1000);

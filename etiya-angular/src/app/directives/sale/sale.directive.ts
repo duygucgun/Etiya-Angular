@@ -1,40 +1,44 @@
-import { Directive, ElementRef, HostListener, Input, OnInit, Renderer2 } from '@angular/core';
+import { Directive,  ElementRef,  HostListener, Input, Renderer2 } from '@angular/core';
 
 @Directive({
   selector: '[appOnSale]'
 })
-export class SaleDirective  implements OnInit{
-  @Input() onSaleColor:string = 'yellow';
+export class SaleDirective {
+
+  @Input() onSaleColor:string = 'red'
   @Input() onSaleText:string = 'On Sale!'
-  @Input() isOnSale: boolean = true;
+  @Input() isOnSale:boolean = true;
 
-
-  constructor(private elementRef:ElementRef , private renderer: Renderer2)  { 
-    this.changeBackgroundColor( 'green');
+  constructor(private elementRef:ElementRef, private renderer:Renderer2) { 
   }
+
   ngOnInit(): void {
-    if (!this.isOnSale) return;
-    this.changeBackgroundColor('green');
+    if(!this.isOnSale) return;
+    this.changeBackgroungColor('green');
     this.addSaleText();
   }
-  @HostListener('mouseenter') onMouseEnter() {
-    if (!this.isOnSale) return;
-    this.changeBackgroundColor(this.onSaleColor);
+
+  @HostListener('mouseenter') onMouseEnter(){
+    if(!this.isOnSale) return;
+    this.changeBackgroungColor(this.onSaleColor);
+
   }
 
-  @HostListener('mouseleave') onMouseLeave() {
-    if (!this.isOnSale) return;
-    this.changeBackgroundColor('green');
+  @HostListener('mouseleave') onMouseLeave(){
+    if(!this.isOnSale) return;
+    this.changeBackgroungColor('green')
+
   }
 
-  changeBackgroundColor(color: string) {
+  changeBackgroungColor(color:string){
     this.elementRef.nativeElement.style.backgroundColor = color;
   }
 
-  addSaleText() {
-    const saleTextElement: HTMLElement = this.renderer.createElement('span');
-    saleTextElement.innerText = this.onSaleText;
-    // saleTextElement = <span>İndirim!!!</span>;
-    this.renderer.appendChild(this.elementRef.nativeElement, saleTextElement);
+  addSaleText(){
+    const saletTextElement : HTMLElement = this.renderer.createElement('span');
+    saletTextElement.innerText = this.onSaleText;
+
+    this.renderer.appendChild(this.elementRef.nativeElement,saletTextElement);
   }
+
 }

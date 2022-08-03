@@ -23,13 +23,14 @@
               "src/assets"
             ],
             "styles": [
-              "node_modules/ngx-toastr/toastr.css" ,
+              "node_modules/ngx-toastr/toastr.css",
               "./node_modules/bootstrap/dist/css/bootstrap.min.css",
               "src/styles.css"
             ],
             "scripts": [
-              "./node_modules/jquery/dist/jquery.min.js",
-              "./node_modules/bootstrap/dist/js/bootstrap.min.js"
+              "node_modules/jquery/dist/jquery.min.js",
+              "node_modules/bootstrap/dist/js/bootstrap.min.js",
+              "node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"
             ]
           },
           "configurations": {
@@ -104,6 +105,6 @@
     }
   },
   "cli": {
-    "analytics": "559523e7-bea4-449f-83f0-caa2e7d105d0"
+    "analytics": "6bfedc8a-144a-4070-9f77-61ab4a466baf"
   }
 }

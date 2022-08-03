@@ -15,11 +15,13 @@ import { DashboardComponent } from './pages/dashboard/dashboard.component';
 import { UpdateCustomerComponent } from './pages/update-customer/update-customer.component';import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ToastrModule } from 'ngx-toastr';
 import { KdvPipe } from './pipes/kdv/kdv.pipe';
-import { SaleDirective } from './directives/sale/sale.directive';
 import { ProductFormComponent } from './pages/product-form/product-form.component';
 import { ProductDashboardComponent } from './pages/product-dashboard/product-dashboard.component';
 import { CustomerFormComponent } from './pages/customer-form/customer-form.component';
 import { CustomerDashboardComponent } from './pages/customer-dashboard/customer-dashboard.component';
+import { ProductPipe } from './pipes/filter/product.pipe';
+import { SaleDirective } from './directives/sale/sale.directive';
+import { ClickProductCardDirective } from './directives/click-product-card/click-product-card.directive';
 
 @NgModule({
   declarations: [
@@ -38,7 +40,9 @@ import { CustomerDashboardComponent } from './pages/customer-dashboard/customer-
     ProductFormComponent,
     ProductDashboardComponent,
     CustomerFormComponent,
-    CustomerDashboardComponent
+    CustomerDashboardComponent,
+    ProductPipe,
+    ClickProductCardDirective
   ],
   imports: [
     BrowserModule,
