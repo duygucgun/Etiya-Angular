@@ -8,23 +8,23 @@ import { Customer } from '../models/customer';
   providedIn: 'root'
 })
 export class CustomersService {
-  apiControllerUrl:string = `${environment.apiUrl}/customers`;
+  apiControllerUrl: string = `${environment.apiUrl}/customers`;
 
-  constructor(private httpClient:HttpClient) { }
+  constructor(private httpClient: HttpClient) { }
 
-  add(customer:Customer): Observable<Customer>{
+  add(customer: Customer): Observable<Customer> {
     return this.httpClient.post<Customer>(this.apiControllerUrl, customer);
   }
-  getList():Observable<Customer[]>{
+  getList(): Observable<Customer[]> {
     return this.httpClient.get<Customer[]>(this.apiControllerUrl)
   }
-  delete(id:number):Observable<Customer>{
+  delete(id: number): Observable<Customer> {
     return this.httpClient.delete<Customer>(`${this.apiControllerUrl}/${id}`);
   }
-  update(customer:Customer):Observable<Customer>{
-    return this.httpClient.put<Customer>(`${this.apiControllerUrl}/${customer.id}`,customer)
+  update(customer: Customer): Observable<Customer> {
+    return this.httpClient.put<Customer>(`${this.apiControllerUrl}/${customer.id}`, customer)
   }
-  getCustomerById(id:number):Observable<Customer>{
+  getCustomerById(id: number): Observable<Customer> {
     return this.httpClient.get<Customer>(`${this.apiControllerUrl}/${id}`)
   }
 }

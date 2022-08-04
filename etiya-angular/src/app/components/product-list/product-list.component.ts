@@ -9,33 +9,43 @@ import { ProductsService } from 'src/app/services/products/products.service';
 })
 export class ProductListComponent implements OnInit {
   today: number = Date.now();
-  productList!: Product[] //productList:any[]=[]
-  cartItems:any[]=[]
-  filterText:string="";
-  constructor(private productsService:ProductsService) { }
+  productList: Product[] = []
+  cartItems: any[] = []
+  filterText: string = "";
+  constructor(private productsService: ProductsService) { }
 
   ngOnInit(): void {
     setTimeout(() => {
       this.getProducts()
-    }, 1000);
-    
+    }, 1000); 
+    //const value:string ="A";
+    //switch(value) {
+     // case "B":
+      //  console.log('B', value);
+     //   break;
+     //   case "A":
+      //    console.log('A' , value);
+       //   break;
+       //   default:console.log('default' , value)
+       //   break;
+    //}
   }
-  
-  getProducts(){
-    this.productsService.getProducts().subscribe(response=>{
-      this.productList=response;
+
+  getProducts() {
+    this.productsService.getProducts().subscribe(response => {
+      this.productList = response;
     })
   }
 
-  addToCart(product:Product){
-    let itemToFind=this.cartItems.find(c=>c==product)
-    if(!itemToFind){
+  addToCart(product: Product) {
+    let itemToFind = this.cartItems.find(c => c == product)
+    if (!itemToFind) {
       this.cartItems.push(product)
     }
-    else{
+    else {
       console.log("Ürün zaten ekli!")
     }
-    
+
   }
 
 }

@@ -18,13 +18,13 @@ import { SuppliersServiceService } from 'src/app/services/suppliers.service';
 export class ProductFormComponent implements OnInit {
 
   productForm!: FormGroup
-  product!:Product
-  categoryList!:Category[]
-  supplierList!:Supplier[]
-  constructor(private formBuilder: FormBuilder, private productService: ProductsService, 
-    private activatedRoute: ActivatedRoute, private router:Router,
-    private toastrService:ToastrService, private supplierService:SuppliersServiceService,
-    private categoryService:CategoriesService) { }
+  product!: Product
+  categoryList!: Category[]
+  supplierList!: Supplier[]
+  constructor(private formBuilder: FormBuilder, private productService: ProductsService,
+    private activatedRoute: ActivatedRoute, private router: Router,
+    private toastrService: ToastrService, private supplierService: SuppliersServiceService,
+    private categoryService: CategoriesService) { }
 
   ngOnInit(): void {
     this.getProductIdFromRoute();
@@ -32,15 +32,15 @@ export class ProductFormComponent implements OnInit {
     this.getCategories();
   }
 
-  getSuppliers(){
-    this.supplierService.getList().subscribe((data)=>{
-      this.supplierList=data;
+  getSuppliers() {
+    this.supplierService.getList().subscribe((data) => {
+      this.supplierList = data;
     })
   }
 
-  getCategories(){
-    this.categoryService.getCategories().subscribe((data)=>{
-      this.categoryList=data;
+  getCategories() {
+    this.categoryService.getCategories().subscribe((data) => {
+      this.categoryList = data;
     })
   }
 
@@ -58,27 +58,27 @@ export class ProductFormComponent implements OnInit {
     })
   }
 
-  getProductIdFromRoute(){
+  getProductIdFromRoute() {
     this.activatedRoute.params.subscribe((params) => {
       if (params['id']) this.getProductById(params['id']);
-      else{
+      else {
         this.createProductForm();
       }
     });
   }
 
-  getProductById(id:number) {
+  getProductById(id: number) {
     this.productService.getProductById(id).subscribe((data) => {
       this.product = data;
       this.createProductForm();
     });
   }
 
-  save(){
+  save() {
     if (this.product) {
       this.update();
     }
-    else{
+    else {
       this.add();
     }
   }
@@ -88,27 +88,27 @@ export class ProductFormComponent implements OnInit {
       this.toastrService.warning("Please fill required areas!")
       return;
     }
-    const product:Product = Object.assign({id:this.product.id}, this.productForm.value);
-      this.productService.update(product).subscribe(() => {
-        setTimeout(() => {
-          this.router.navigateByUrl('/dashboard/products');
-          this.toastrService.success("Product succesfully updated!")
-        }, 1000);
-      });
-   
+    const product: Product = Object.assign({ id: this.product.id }, this.productForm.value);
+    this.productService.update(product).subscribe(() => {
+      setTimeout(() => {
+        this.router.navigateByUrl('/dashboard/products');
+        this.toastrService.success("Product succesfully updated!")
+      }, 1000);
+    });
+
   }
 
-  add(){
+  add() {
     if (this.productForm.invalid) {
       this.toastrService.warning("Please fill required areas!")
       return;
     }
 
-    const product:Product = {
+    const product: Product = {
       ...this.productForm.value,
     }
 
-    this.productService.add(product).subscribe(() =>{
+    this.productService.add(product).subscribe(() => {
       setTimeout(() => {
         this.toastrService.success("Product succesfully added!")
         this.router.navigateByUrl('/dashboard/products')

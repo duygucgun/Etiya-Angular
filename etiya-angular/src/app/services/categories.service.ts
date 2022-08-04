@@ -8,16 +8,16 @@ import { Category } from '../models/category';
   providedIn: 'root'
 })
 export class CategoriesService {
-  apiControllerUrl:string = `${environment.apiUrl}/categories`;
+  apiControllerUrl: string = `${environment.apiUrl}/categories`;
 
 
-  constructor(private httpClient:HttpClient) { }
+  constructor(private httpClient: HttpClient) { }
 
 
-  getCategories():Observable<Category[]>{
+  getCategories(): Observable<Category[]> {
     return this.httpClient.get<Category[]>(this.apiControllerUrl);
   }
-  getCategoryById(id:number):Observable<Category[]>{
+  getCategoryById(id: number): Observable<Category[]> {
     return this.httpClient.get<Category[]>(`${this.apiControllerUrl}/${id}`);
   }
 }

@@ -10,9 +10,9 @@ export class AddProductComponent implements OnInit {
   password!: string;
   constructor() { }
 
-  ngOnInit(): void {}
+  ngOnInit(): void { }
 
-  onEmailChange(event:string){
+  onEmailChange(event: string) {
     console.log(`Değer değişti: ${event}`);
   }
 }

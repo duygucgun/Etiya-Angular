@@ -8,21 +8,21 @@ import { CategoriesService } from 'src/app/services/categories.service';
   styleUrls: ['./category-list.component.css']
 })
 export class CategoryListComponent implements OnInit {
-  categories!:Category[]
-  constructor(private categoriesService:CategoriesService) { }
+  categories!: Category[]
+  constructor(private categoriesService: CategoriesService) { }
 
   ngOnInit(): void {
     setTimeout(() => {
       this.getCategories()
-      
+
     }, 1000);
   }
-  getCategories(){
-    this.categoriesService.getCategories().subscribe(response=>{
-      this.categories=response;
+  getCategories() {
+    this.categoriesService.getCategories().subscribe(response => {
+      this.categories = response;
     })
   }
-  getCategoryById(category:Category){
+  getCategoryById(category: Category) {
     console.log(category.name)
   }
 

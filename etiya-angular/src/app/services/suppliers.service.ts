@@ -8,10 +8,10 @@ import { environment } from 'src/environments/environment';
   providedIn: 'root'
 })
 export class SuppliersServiceService {
-  apiControllerUrl:string=`${environment.apiUrl}/suppliers`
-  constructor(private httpClient:HttpClient) { }
+  apiControllerUrl: string = `${environment.apiUrl}/suppliers`
+  constructor(private httpClient: HttpClient) { }
 
-  getList():Observable<Supplier[]>{
+  getList(): Observable<Supplier[]> {
     return this.httpClient.get<Supplier[]>(this.apiControllerUrl)
   }
 

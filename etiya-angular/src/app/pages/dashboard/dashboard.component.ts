@@ -10,7 +10,7 @@ import { CustomersService } from 'src/app/services/customers.service';
 })
 export class DashboardComponent implements OnInit {
   customerList!: Customer[];
-  constructor(private router:Router , private customersService: CustomersService) { }
+  constructor(private router: Router, private customersService: CustomersService) { }
 
   ngOnInit(): void {
     this.getCustomers()
@@ -22,14 +22,14 @@ export class DashboardComponent implements OnInit {
   }
   deleteCustomer(id: number) {
     if (confirm("Are you sure want to delete?")) {
-      this.customersService.delete(id).subscribe(()=>{
+      this.customersService.delete(id).subscribe(() => {
         setTimeout(() => {
           this.getCustomers();
-    }, 1000);
+        }, 1000);
       })
     }
   }
-  selectedCustomerId(selectedCustomer:Customer):void {
+  selectedCustomerId(selectedCustomer: Customer): void {
     this.router.navigateByUrl(`dashboard/customer/${selectedCustomer.id}`);
   }
 }

@@ -13,7 +13,7 @@ import { CustomersService } from 'src/app/services/customers.service';
 export class CustomerDashboardComponent implements OnInit {
 
   customerList!: Customer[]
-  constructor(private customersService: CustomersService, private toastrService:ToastrService, private router:Router) { }
+  constructor(private customersService: CustomersService, private toastrService: ToastrService, private router: Router) { }
 
   ngOnInit(): void {
     this.getCustomers();
@@ -27,17 +27,17 @@ export class CustomerDashboardComponent implements OnInit {
 
   deleteCustomer(id: number) {
     if (confirm("Are you sure want to delete?")) {
-      this.customersService.delete(id).subscribe(()=>{
+      this.customersService.delete(id).subscribe(() => {
         this.toastrService.success("Customer is delete!", "Update")
         setTimeout(() => {
           this.getCustomers();
         }, 1000);
       })
     }
-    
+
   }
 
-  selectedCustomerId(selectedCustomer:Customer):void{
+  selectedCustomerId(selectedCustomer: Customer): void {
     this.router.navigateByUrl(`dashboard/customer/${selectedCustomer.id}`);
   }
 

@@ -13,9 +13,9 @@ export class ProductCardComponent implements OnInit {
   isCard: boolean = true;
   onSaleText: string = 'İndirim!!!';
 
-  constructor() {}
+  constructor() { }
 
-  ngOnInit(): void {}
+  ngOnInit(): void { }
 
   addToCartEvent() {
     this.onBtnClick.emit(this.product);

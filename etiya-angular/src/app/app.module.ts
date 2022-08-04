@@ -22,6 +22,10 @@ import { CustomerDashboardComponent } from './pages/customer-dashboard/customer-
 import { ProductPipe } from './pipes/filter/product.pipe';
 import { SaleDirective } from './directives/sale/sale.directive';
 import { ClickProductCardDirective } from './directives/click-product-card/click-product-card.directive';
+import { IfNotDirective } from './directives/ifNot/if-not.directive';
+import { MultipleDirective } from './directives/multiple/multiple.directive';
+import { OrderListComponent } from './components/orders-list/order-list/order-list.component';
+import { WelcomeDirective } from './directives/welcome/welcome.directive';
 
 @NgModule({
   declarations: [
@@ -42,7 +46,11 @@ import { ClickProductCardDirective } from './directives/click-product-card/click
     CustomerFormComponent,
     CustomerDashboardComponent,
     ProductPipe,
-    ClickProductCardDirective
+    ClickProductCardDirective,
+    IfNotDirective,
+    WelcomeDirective,
+    MultipleDirective,
+    OrderListComponent
   ],
   imports: [
     BrowserModule,

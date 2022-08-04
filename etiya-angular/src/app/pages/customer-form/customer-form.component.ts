@@ -13,8 +13,8 @@ import { CustomersService } from 'src/app/services/customers.service';
 export class CustomerFormComponent implements OnInit {
 
   customerForm!: FormGroup
-  customer!:Customer
-  constructor(private formBuilder: FormBuilder, private customersService: CustomersService, private activatedRoute: ActivatedRoute, private router:Router,private toastrService:ToastrService) { }
+  customer!: Customer
+  constructor(private formBuilder: FormBuilder, private customersService: CustomersService, private activatedRoute: ActivatedRoute, private router: Router, private toastrService: ToastrService) { }
 
   ngOnInit(): void {
     this.getCustomerIdFromRoute();
@@ -23,7 +23,7 @@ export class CustomerFormComponent implements OnInit {
   createcustomerForm() {
     this.customerForm = this.formBuilder.group({
       companyName: [this.customer?.companyName || '', Validators.required],
-      contactName: [this.customer?.contactName || '' , Validators.required],
+      contactName: [this.customer?.contactName || '', Validators.required],
       contactTitle: [this.customer?.contactTitle || '', Validators.required],
       street: [this.customer?.street || '', Validators.required],
       city: [this.customer?.city || '', Validators.required],
@@ -35,27 +35,27 @@ export class CustomerFormComponent implements OnInit {
     })
   }
 
-  getCustomerIdFromRoute(){
+  getCustomerIdFromRoute() {
     this.activatedRoute.params.subscribe((params) => {
       if (params['id']) this.getCustomerById(params['id']);
-      else{
+      else {
         this.createcustomerForm();
       }
     });
   }
 
-  getCustomerById(id:number) {
+  getCustomerById(id: number) {
     this.customersService.getCustomerById(id).subscribe((data) => {
       this.customer = data;
       this.createcustomerForm();
     });
   }
 
-  save(){
+  save() {
     if (this.customer) {
       this.update();
     }
-    else{
+    else {
       this.add();
     }
   }
@@ -65,27 +65,27 @@ export class CustomerFormComponent implements OnInit {
       this.toastrService.warning("Please fill required areas!")
       return;
     }
-    const customer:Customer = Object.assign({id:this.customer.id}, this.customerForm.value);
-      this.customersService.update(customer).subscribe(() => {
-        setTimeout(() => {
-          this.router.navigateByUrl('/dashboard/customers');
-          this.toastrService.success("Customer succesfully updated!")
-        }, 1000);
-      });
-   
+    const customer: Customer = Object.assign({ id: this.customer.id }, this.customerForm.value);
+    this.customersService.update(customer).subscribe(() => {
+      setTimeout(() => {
+        this.router.navigateByUrl('/dashboard/customers');
+        this.toastrService.success("Customer succesfully updated!")
+      }, 1000);
+    });
+
   }
 
-  add(){
+  add() {
     if (this.customerForm.invalid) {
       this.toastrService.warning("Please fill required areas!")
       return;
     }
 
-    const customer:Customer = {
+    const customer: Customer = {
       ...this.customerForm.value,
     }
 
-    this.customersService.add(customer).subscribe(() =>{
+    this.customersService.add(customer).subscribe(() => {
       setTimeout(() => {
         this.toastrService.success("Customer succesfully added!")
         this.router.navigateByUrl('/dashboard/customers')

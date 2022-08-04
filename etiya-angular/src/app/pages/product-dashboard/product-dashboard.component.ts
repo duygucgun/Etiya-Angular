@@ -12,7 +12,7 @@ import { ProductsService } from 'src/app/services/products/products.service';
 export class ProductDashboardComponent implements OnInit {
 
   productList!: Product[]
-  constructor(private toastrService:ToastrService, private productService: ProductsService, private router:Router) { }
+  constructor(private toastrService: ToastrService, private productService: ProductsService, private router: Router) { }
 
   ngOnInit(): void {
     this.getProducts();
@@ -26,17 +26,17 @@ export class ProductDashboardComponent implements OnInit {
 
   deleteProduct(id: number) {
     if (confirm("Are you sure want to delete?")) {
-      this.productService.deleteProduct(id).subscribe(()=>{
+      this.productService.deleteProduct(id).subscribe(() => {
         this.toastrService.success("Product is delete!", "Update")
         setTimeout(() => {
           this.getProducts();
         }, 1000);
       })
     }
-    
+
   }
 
-  selectedProductId(selectedProduct:Product):void{
+  selectedProductId(selectedProduct: Product): void {
     this.router.navigateByUrl(`dashboard/product/${selectedProduct.id}`);
   }
 
