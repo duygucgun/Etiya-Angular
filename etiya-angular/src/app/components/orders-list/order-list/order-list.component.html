@@ -1,6 +1,24 @@
 <table  class="table table-light table-hover">
     <thead>
       <tr >
+        <th scope="col">Welcome</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *appWelcome="2000; else showWelcomeList">
+        <td colspan="8">Welcome</td>
+      </tr>
+      <ng-template #showWelcomeList>
+        <tr *appMultiple="5">
+          <td colspan="8">Welcome</td>
+        </tr>
+      </ng-template>
+    </tbody>
+</table>
+
+<table  class="table table-light table-hover">
+    <thead>
+      <tr >
         <th scope="col">Id</th>
         <th scope="col">Ship Name</th>
         <th scope="col">Customer Key</th>
@@ -16,7 +34,7 @@
         <td colspan="8">Welcome</td>
       </tr>
       <ng-template #showList>
-        <tr *appMultiple="let order of orderList;">
+        <tr *ngFor="let order of orderList;">
           <th scope="row">{{order.id}}</th>
           <td>{{order.shipName | uppercase}}</td>
           <td>{{order.customerKey}}</td>
@@ -28,4 +46,3 @@
         </tr>
       </ng-template>
     </tbody>
-</table>
